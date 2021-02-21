@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+  <style>
+    #d1,#d2{
+      width:400px;
+      height:300px;
+    }
+    #d1{
+      background-color:#afa
+    }
+    #d2{
+      background-color:#aaf
+    }
+  </style>
+</head>
+<body>
+  <!--1. 做界面-->
+  <div id="app">
+    <!--需求1: 两个div，点哪个div，就让哪个div喊疼!
+          所以在绑定事件处理函数时，将每个div的名字字符串，提前放入事件处理函数的实参中！-->
+    <div id="d1" @click="say('亮亮')">成亮</div>
+    <div id="d2" @click="say('然然')">李然</div>
+  </div>
+  <script>
+    //2. 创建new Vue()对象，监视id为app的区域
+    new Vue({
+      el:"#app",
+      //3. 创建模型对象，保存页面所需的变量和事件处理函数
+      //没有变量，所以不用写data
+      //但是有事件处理函数
+      methods:{
+        //因为事件绑定时会传入一个实参值，所以定义事件处理函数时，需要定义一个形参变量，准备接将来传入的实参值。
+        say(ename){
+          console.log(`${ename} 疼!`);
+        }
+      }
+    })
+  </script>
+</body>
+</html>

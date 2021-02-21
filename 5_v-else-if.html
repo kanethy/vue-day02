@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+  <!--1. 做界面-->
+  <div id="app">
+    <!--想根据pm25的数值在四张图片中选其一显示-->
+    <!--如果pm25<100，显示第一张图片-->
+    <!--否则如果pm25<200，显示第二张图片-->
+    <!--否则如果pm25<300, 显示第三张图片-->
+    <!--否则如果以上条件都不满足，才显示第四张图片-->
+    <img v-if="pm25<100" src="img/1.png" alt="">
+    <img v-else-if="pm25<200" src="img/2.png" alt="">
+    <img v-else-if="pm25<300" src="img/3.png" alt="">
+    <img v-else src="img/4.png" alt="">
+  </div>
+  <script>
+    //2. 创建new Vue()对象，监视id为app的区域
+    new Vue({
+      el:"#app",
+      //3. 创建模型对象，保存界面中所需的所有变量
+      data:{
+        pm25:350
+      }
+    })
+  </script>
+</body>
+</html>

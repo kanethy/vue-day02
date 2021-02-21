@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+  <style>
+    .alert{
+      position:fixed;
+      width:400px;
+      height:200px;
+      background-color:#afa;
+      top:50%;
+      left:50%;
+      margin-left:-200px;
+      margin-top:-100px;
+    }
+    .alert>a{
+      position:absolute;
+      right:10px;
+      top:10px;
+      padding: 5px 10px;
+      border:1px solid blue;
+    }
+  </style>
+</head>
+<body>
+  <!--1. 做界面-->
+  <div id="app">
+    <!--点击按钮可以让对话框显示-->
+    <button @click="show">click me</button>
+    <!--本例中: 希望点按钮对话框div才显示，点x对话框div就隐藏，所以需要控制对话框div的显示和隐藏状态，
+      所以需要一个自定义变量isShow：
+      isShow为true时，对话框才显示
+      isShow为false时，对话框就隐藏 -->
+    <div v-show="isShow" class="alert">
+      <!--点×可以隐藏对话框-->
+      <a href="javascript:;" @click="hide">×</a>
+    </div>
+  </div>
+  <script>
+    //2. 创建new Vue()对象,监控id为app的区域
+    new Vue({
+      el:"#app",
+      //3. 创建模型对象，保存界面所需的所有变量
+      data:{
+        isShow:false //开局，对话框默认不显示
+      },
+      //因为页面中需要两个事件处理函数，所以
+      methods:{
+        show(){
+          this.isShow=true;
+        },
+        hide(){
+          this.isShow=false;
+        }
+      }
+    })
+  </script>
+</body>
+</html>

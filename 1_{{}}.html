@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+  <!--1. 先做界面-->
+  <div id="app">
+    <h3>用户名:{{uname}}</h3>
+    <!--如果  性别==1，就显示"男",否则 就显示"女"-->
+    <h3>性别:{{sex==1  ?   "男"   :       "女"}}</h3>
+    <!--        单价  x 数量  按2位小数四舍五入-->
+    <h3>小计:¥{{(price*count).toFixed(2)}}</h3>
+    <!--新建日期对象，保存毫秒数，并转为当地时间的字符串格式-->
+    <h3>下单时间: {{
+      new Date(orderTime).toLocaleString()
+    }}</h3>
+    <h3>今天星期{{week[new Date().getDay()]}}</h3>
+  </div>
+  <script>
+    //2. 创建new Vue()对象监控id为app的区域
+    new Vue({
+      el:"#app",
+      //3. 创建模型对象保存页面所需的所有变量
+      data:{
+        uname:"dingding",
+        sex:1,//性别
+        price:12.5,//单价
+        count:5,//数量
+        orderTime:1595296375921,//下单时间
+        //一周,自定义属性名
+        week:["日","一","二","三","四","五","六"]
+        //     0    1    2    3    4    5   6
+        //               ↑
+        //               2
+        //new Date().getDay()
+        //创建日期对象
+        //并自动获得当前系统时间
+        //           获得星期对应的数字
+      }
+    })
+  </script>
+</body>
+</html>

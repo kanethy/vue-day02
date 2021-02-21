@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/vue.js"></script>
+    <style>
+        #d1,#d2,#d3,#d4,#d5,#d6{
+            width: 300px;
+            height: 100px;
+        }
+        #d1{
+            background-color: #bbf;
+        }
+        #d2{
+            background-color: #bfb;
+        }
+        #d3{
+            background-color: #eae;
+        }
+        #d4{
+            background-color: #cea;
+        }
+        #d5{
+            background-color: #bbc;
+        }
+        #d6{
+            background-color: #cba;
+        }
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="app1">
+        <div id="d1" @click="say('lulu')">露露</div>
+        <div id="d2" @click="say('chuchu')">楚楚</div>
+    </div>
+
+    <div id="app2">
+        <div id="d3" @click="say">lulu</div>
+        <div id="d4" @click="say">lulu</div>
+    </div>
+
+    <div id="app3">
+        <div id="d5" @click="say($event,'lulu')">lulu</div>
+        <div id="d6" @click="say($event,'chuchu')">chuchu</div>
+    </div>
+
+    <div id="app4">
+       
+        <h3 v-cloak>用户名：{{uname}}</h3>
+        <h3 v-text=`积分：${score}`></h3>
+    
+    </div>
+    <script>
+        new Vue({
+            el:"#app1",
+            methods:{
+                say(ename){
+                    console.log(`${ename}...疼！`)
+                }
+            }
+        })
+
+        new Vue({
+            el:"#app2",
+            methods:{
+                say(e){
+                    console.log(`x:${e.offsetX},y:${e.offsetY}的位置疼！`)
+                }
+            }
+        })
+
+        new Vue({
+            el:"#app3",
+            methods:{
+                say(e,ename){
+                    console.log(`${ename}的 x:${e.offsetX}, y:${e.offsetY} 位置疼！`)
+                }
+            }
+        })
+        setTimeout(function(){
+            new Vue({
+                el:"#app4",
+                data:{
+                    uname:"lulu",
+                    score:3000
+                }
+            })
+        },3000)
+    </script>
+</body>
+</html>

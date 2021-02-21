@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/vue.js"></script>
+    <style>
+        .alert{
+            position: fixed;
+            width: 400px;
+            height: 200px;
+            background-color: #aaf;
+            top:70%;
+            left: 70%;
+            margin-top: -150px;
+            margin-left: -250px;
+        }
+        .alert>a{
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            padding: 5px 10px;
+            border: 1px solid darkturquoise;
+        }
+
+        .p8{
+            list-style: none;
+        }
+        .p8>li{
+            float: left;
+            padding: 5px 10px;
+            border: 1px solid coral;
+        }
+        .p8>li~li{
+            border-left: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="app1">
+        <h3>用户名：{{uname}}</h3>
+        <h3>性别：{{sex==1?"男":"女"}}</h3>
+        <h3>小计：￥{{(price*count).toFixed(2)}}</h3>
+        <h3>下单时间：{{new Date(orderTime).toLocaleString()}}</h3>
+        <h3>今天星期{{week[new Date().getDay()]}}</h3>
+    </div>
+    <div id="app2">
+        <h3>空气的质量：{{
+            pm25<100?'img/1.png':
+            pm25<200?'img/2.png':
+            pm25<300?'img/3.png':
+            'img/4.png'
+            }}</h3>
+        <img :src="
+        pm25<100?'img/1.png':
+        pm25<200?'img/2.png':
+        pm25<300?'img/3.png':
+        'img/4.png'" alt="">
+    </div>
+    <div id="app3">
+        <button @click="show">click me</button>
+        <div v-show="isShow" class="alert">
+            <a @click="hide" href="javascript:;">x</a>
+        </div>
+    </div>
+
+    <div id="app4">
+        <h3 v-if="isLogin">Welcome lulu | <a href="javascript:;" @click="logout">登出</a></h3>
+        <h3 v-else>
+            <a href="javascript:;" @click="login">登录</a> |
+            <a href="javascript:;">注册</a>
+        </h3>
+    </div>
+
+    <div id="app5">
+        <img v-if="pm25<100" src="img/1.png" alt="">
+        <img v-else-if="pm25<200" src="img/2.png" alt="">
+        <img v-else-if="pm25<300" src="img/3.png" alt="">
+        <img v-else src="img/4.png" alt="">
+    </div>
+
+    <div id="app6">
+        <ul>
+            <li v-for="(uname,i) of arr">{{i+1}}--{{uname}}</li>
+        </ul>
+    </div>
+
+    <div id="app7">
+        <ul>
+            <li v-for="(value,key) of lulu" :key="key">{{key}}--{{value}}</li>
+        </ul>
+    </div>
+
+    <div id="app8">
+        <ul class="p8">
+            <li v-for="i of num">{{i}}</li>
+        </ul>
+    </div>
+    <script>
+        new Vue({
+            el:"#app1",
+            data:{
+                uname:"lulu",
+                sex:"0",
+                price:"1200",
+                count:"2",
+                orderTime:1613883759340,
+                week:["日","一","二","三","四","五","六"]
+            }
+        })
+
+        new Vue({
+            el:"#app2",
+            data:{
+                pm25:250
+            }
+        })
+
+        new Vue({
+            el:"#app3",
+            data:{
+                isShow:false
+            },
+            methods:{
+                show(){
+                    this.isShow=true;
+                },
+                hide(){
+                    this.isShow=false;
+                }
+            }
+        })
+
+        new Vue({
+            el:"#app4",
+            data:{
+                isLogin:false
+            },
+            methods:{
+                login(){
+                    this.isLogin=true
+                },
+                logout(){
+                    this.isLogin=false
+                }
+          }
+        })
+
+        new Vue({
+            el:"#app5",
+            data:{
+                pm25:"320"
+            }
+        })
+
+        new Vue({
+            el:"#app6",
+            data:{
+                arr:["lulu","chuchu","dd","tt"]
+            }
+        })
+
+        new Vue({
+            el:"#app7",
+            data:{
+                lulu:{
+                    sname:"lulu",
+                    sage:3,
+                    sex:"boy",
+                    className:"幼稚园2班"
+                }
+            }
+        })
+
+        new Vue({
+            el:"#app8",
+            data:{
+                num:9
+            }
+        })
+    </script>
+</body>
+</html>

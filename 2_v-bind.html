@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+  <!--1. 做界面-->
+  <div id="app">
+    <!--想实现根据空气质量pm25的数值，修改页面中img元素显示的人物表情-->
+    <!--
+    //如果pm25<100，则使用img/1.png
+          pm25<100  ?'img/1.png':
+    //否则如果pm25<200，则使用img/2.png
+             pm25<200?'img/2.png':
+    //否则如果pm25<300，则使用img/3.png
+             pm25<300?'img/3.png':
+    //否则，其它情况，都使用img/4.png
+                      'img/4.png'
+    -->
+    <h3>空气质量: {{
+      pm25<100?'img/1.png':
+      pm25<200?'img/2.png':
+      pm25<300?'img/3.png':
+               'img/4.png'
+    }}</h3>
+    <!--<img v-bind:src="-->
+    <img :src="
+      pm25<100?'img/1.png':
+      pm25<200?'img/2.png':
+      pm25<300?'img/3.png':
+               'img/4.png'
+    " alt="">
+  </div>
+  <script>
+    //2. 创建new Vue()对象监控id为app的区域
+    new Vue({
+      el:"#app",
+      //3. 创建模型对象保存界面所需的变量
+      data:{
+        pm25:350
+      }
+    })
+  </script>
+</body>
+</html>

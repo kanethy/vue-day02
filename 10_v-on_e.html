@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+  <style>
+    #d1,#d2{
+      width:400px;
+      height:300px;
+    }
+    #d1{
+      background-color:#afa
+    }
+    #d2{
+      background-color:#aaf
+    }
+  </style>
+</head>
+<body>
+  <!--1. 做界面-->
+  <div id="app">
+    <!--需求1: 点在div的某个位置，喊某个位置疼！
+          所以在绑定事件处理函数时什么都不传入
+          而是在定义事件处理函数中添加形参e，自动获得事件对象，从而进一步自动获得事件对象中的鼠标位置-->
+    <div id="d1" @click="say">成亮</div>
+    <div id="d2" @click="say">李然</div>
+  </div>
+  <script>
+    //2. 创建new Vue()对象，监视id为app的区域
+    new Vue({
+      el:"#app",
+      //3. 创建模型对象，保存页面所需的变量和事件处理函数
+      //没有变量，所以不用写data
+      //但是有事件处理函数
+      methods:{
+        //希望在事件发生时自动获得事件对象e
+        //event 自动创建
+        //  ↓ 自动传入
+        say(e){
+          console.log(`x:${e.offsetX},y:${e.offsetY}位置疼!`);
+        }
+      }
+    })
+  </script>
+</body>
+</html>

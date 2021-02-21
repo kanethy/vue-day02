@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+  <style>
+    #d1,#d2{
+      width:400px;
+      height:300px;
+    }
+    #d1{
+      background-color:#afa
+    }
+    #d2{
+      background-color:#aaf
+    }
+  </style>
+</head>
+<body>
+  <!--1. 做界面-->
+  <div id="app">
+    <!--需求3: 点在哪个div的某个位置，喊谁的某个位置疼！
+          既要传入人名，又要传入事件对象-->
+    <!--                  写死字符串 关键字-->
+    <div id="d1" @click="say('亮亮',$event)">成亮</div>
+    <div id="d2" @click="say('然然',$event)">李然</div>
+  </div>
+  <script>
+    //2. 创建new Vue()对象，监视id为app的区域
+    new Vue({
+      el:"#app",
+      //3. 创建模型对象，保存页面所需的变量和事件处理函数
+      //没有变量，所以不用写data
+      //但是有事件处理函数
+      methods:{
+        //希望在事件发生时同时获得自定义实参值和事件对象
+        say(ename, e){
+          console.log(`${ename}的x:${e.offsetX},y:${e.offsetY}位置疼!`);
+        }
+      }
+    })
+  </script>
+</body>
+</html>

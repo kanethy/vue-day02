@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+  <style>
+    ul{ list-style:none; }
+    ul>li{
+      float:left;
+      padding: 5px 10px;
+      border:1px solid #aaa
+    }
+    ul>li~li{
+      border-left:0;
+    }
+  </style>
+</head>
+<body>
+  <!--1. 做界面-->
+  <div id="app">
+    <!--想生成一组分页按钮，根据程序中总页数(pageCount)变量值动态生成指定数量的分页按钮-->
+    <ul>
+      <li v-for="i of pageCount" :key="i">{{i}}</li>
+    </ul>
+  </div>
+  <script>
+    //2. 创建new Vue()对象监控id为app的区域
+    new Vue({
+      el:"#app",
+      //3. 创建模型对象，保存界面所需的所有变量
+      data:{
+        pageCount:5
+      }
+    })
+  </script>
+</body>
+</html>

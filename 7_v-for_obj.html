@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+  <!--1. 做界面-->
+  <div id="app">
+    <!--想显示一个学生对象的个人信息
+      用v-for去遍历lilei对象中每属性
+      自定义的key变量，接住正在遍历的属性的属性名
+      自定义的value变量，接住正在遍历的属性的属性值
+      因为对象中，属性名一定是不重复的！所以:key应该绑定不重复的属性名-->
+    <ul>
+      <li v-for="(value,key) of lilei" :key="key">{{key}} : {{value}}</li>
+    </ul>
+  </div>
+  <script>
+    //2. 创建new Vue()对象，监视id为app的区域
+    new Vue({
+      el:"#app",
+      //3. 创建模型对象，保存页面所需的所有变量
+      data:{
+        lilei:{
+          sname:"Li Lei",
+          sage:11,
+          className:"初一2班"
+        }
+      }
+    })
+  </script>
+</body>
+</html>

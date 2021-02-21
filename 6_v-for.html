@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+  <!--1. 做界面-->
+  <div id="app">
+    <!--想显示一个人名的列表,所以在程序中应该有一个数组arr来保存所有的人名,并HTML中应该用v-for来遍历数组中每个人名，每遍历一个人名就创建一个li元素的副本，每个li元素中都显示当前人名的下标和人名-->
+    <ul>
+      <li v-for="(ename,i) of arr" :key="i">{{i+1}} - {{ename}}</li>
+    </ul>
+  </div>
+  <script>
+    //2. 创建new Vue()对象，监视id为app的区域
+    new Vue({
+      el:"#app",
+      //3. 创建模型对象，保存页面所需的所有变量
+      data:{
+        arr:["亮亮","然然","东东"]
+      }
+    })
+  </script>
+</body>
+</html>
